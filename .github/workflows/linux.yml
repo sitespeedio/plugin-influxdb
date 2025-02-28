@@ -16,7 +16,10 @@ jobs:
       with:
         node-version: '22.x'
     - name: Install sitespeed.io
-      run: npm install sitespeed.io -g
+      run: |
+        git clone https://github.com/sitespeedio/sitespeed.io.git
+        cd sitespeed.io
+        npm install -g
     - name: Install Chrome
       run: |
         wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | sudo apt-key add - 
@@ -34,6 +37,9 @@ jobs:
     - name: Browser versions
       run: |
         google-chrome --version
+    - name: Info
+      run: |
+        ls -la
     - name: Run test with Influx 1.8
       run: sitespeed.io https://www.sitespeed.io -n 1 --influxdb.host 127.0.0.1 --xvfb --resultBaseUrl https://result.sitespeed.io --influxdb.annotationScreenshot=true
     - name: Run test with Influx 2.6.1
