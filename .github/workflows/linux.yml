@@ -35,6 +35,6 @@ jobs:
       run: |
         google-chrome --version
     - name: Run test with Influx 1.8
-      run: sitespeed.io --plugins.load lib/index.js https://www.sitespeed.io -n 1 --influxdb.host 127.0.0.1 --xvfb --logToFile --resultBaseUrl https://result.sitespeed.io --influxdb.annotationScreenshot=true
+      run: sitespeed.io https://www.sitespeed.io -n 1 --influxdb.host 127.0.0.1 --xvfb --resultBaseUrl https://result.sitespeed.io --influxdb.annotationScreenshot=true
     - name: Run test with Influx 2.6.1
-      run: sitespeed.io --plugins.load lib/index.js https://www.sitespeed.io -n 1 --influxdb.host 127.0.0.1 --influxdb.port 8087 --influxdb.version 2 --influxdb.organisation sitespeed --influxdb.token sitespeed --xvfb --resultBaseUrl https://result.sitespeed.io --influxdb.annotationScreenshot=true
+      run: sitespeed.io https://www.sitespeed.io -n 1 --influxdb.host 127.0.0.1 --influxdb.port 8087 --influxdb.version 2 --influxdb.organisation sitespeed --influxdb.token sitespeed --xvfb --resultBaseUrl https://result.sitespeed.io --influxdb.annotationScreenshot=true
