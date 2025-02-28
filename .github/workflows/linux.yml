@@ -15,6 +15,8 @@ jobs:
       uses: actions/setup-node@v4
       with:
         node-version: '22.x'
+    - name: Install dependencies
+      run: npm install ci
     - name: Install sitespeed.io
       run: |
         git clone https://github.com/sitespeedio/sitespeed.io.git
