@@ -47,5 +47,6 @@
     "lint:fix": "eslint . --fix",
     "eslint-check": "eslint --print-config .eslintrc.js | eslint-config-prettier-check"
   },
-  "main": "./lib/index.js"
+  "main": "./lib/index.js",
+  "exports": "./lib/index.js"
 }
