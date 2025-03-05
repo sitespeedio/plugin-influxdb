@@ -1,6 +1,6 @@
 {
   "name": "@sitespeed.io/plugin-influxdb",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "type": "module",
   "description": "InfluxDB plugin for sitespeed.io",
   "publishConfig": {
