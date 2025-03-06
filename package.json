@@ -39,7 +39,8 @@
     "@sitespeed.io/plugin": "1.0.0",
     "dayjs": "1.11.11",
     "influx": "5.9.3",
-    "lodash.get": "4.4.2"
+    "lodash.get": "4.4.2",
+    "lodash.merge": "4.6.2"
   },
   "scripts": {
     "test": "ava",
