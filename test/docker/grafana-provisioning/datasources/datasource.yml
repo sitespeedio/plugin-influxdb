@@ -1,0 +1,14 @@
+apiVersion: 1
+datasources:
+  - name: "InfluxDB 2"
+    version: 2
+    type: influxdb
+    access: proxy
+    url: http://influxdb2:8086
+    jsonData:
+      defaultBucket: sitespeed
+      httpMode: POST
+      organization: sitespeed_org
+      version: Flux
+    secureJsonData:
+      token: sitespeed_token
