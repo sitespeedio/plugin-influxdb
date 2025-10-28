@@ -8,7 +8,7 @@ datasources:
     jsonData:
       defaultBucket: sitespeed
       httpMode: POST
-      organization: sitespeed_org
+      organization: sitespeed
       version: Flux
     secureJsonData:
       token: sitespeed_token

@@ -40,7 +40,7 @@ sitespeed.io https://www.sitespeed.io -n 1 \
 --influxdb.host 127.0.0.1 \
 --influxdb.port 8087 \
 --influxdb.version 2 \
---influxdb.organisation sitespeed_org \
+--influxdb.organisation sitespeed \
 --influxdb.token sitespeed_token \
 --influxdb.annotationScreenshot=true \
 --plugins.add @sitespeed.io/plugin-influxdb \
@@ -51,9 +51,3 @@ sitespeed.io https://www.sitespeed.io -n 1 \
 ### 5. Repeat tests and observe metrics in Grafana
 
 You can run Sitespeed.io multiple times — all collected metrics will be visualized in Grafana.
-
-
-
-
-
-
