@@ -16,7 +16,7 @@ services:
       - DOCKER_INFLUXDB_INIT_PASSWORD=sitespeed
       - DOCKER_INFLUXDB_INIT_ORG=sitespeed
       - DOCKER_INFLUXDB_INIT_BUCKET=sitespeed
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=sitespeed_token
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=sitespeed
     volumes:
       - ./influxdb-data:/var/lib/influxdb2
       - ./influxdb-config:/etc/influxdb2
@@ -32,7 +32,7 @@ services:
       - GF_SECURITY_ADMIN_USER=sitespeed
       - DOCKER_INFLUXDB_INIT_ORG=sitespeed
       - DOCKER_INFLUXDB_INIT_BUCKET=sitespeed
-      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=sitespeed_token
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=sitespeed
     volumes:
       - ./grafana-storage:/var/lib/grafana
       - ./grafana-provisioning/:/etc/grafana/provisioning/
