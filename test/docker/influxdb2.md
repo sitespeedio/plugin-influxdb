@@ -41,7 +41,7 @@ sitespeed.io https://www.sitespeed.io -n 1 \
 --influxdb.port 8087 \
 --influxdb.version 2 \
 --influxdb.organisation sitespeed \
---influxdb.token sitespeed_token \
+--influxdb.token sitespeed \
 --influxdb.annotationScreenshot=true \
 --plugins.add @sitespeed.io/plugin-influxdb \
 --slug=mytest \
