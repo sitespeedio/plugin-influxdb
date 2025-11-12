@@ -1,19 +1,64 @@
-version: '3'
 services:
-    influxdb_v1.8:
-      image: influxdb:1.8
-      ports:
-        - '8086:8086'
-      environment:
+  influxdb_v1.8:
+    image: influxdb:1.8
+    ports:
+      - '8086:8086'
+    environment:
       - INFLUXDB_DB=sitespeed
-    influxdb_v2.6:
-      image: influxdb:2.6.1
-      ports:
-        - '8087:8086'
-      environment:
+  influxdb_v2.7:
+    image: influxdb:2.7.12
+    hostname: influxdb2
+    ports:
+      - '8087:8086'
+    environment:
       - DOCKER_INFLUXDB_INIT_MODE=setup
       - DOCKER_INFLUXDB_INIT_USERNAME=sitespeed
       - DOCKER_INFLUXDB_INIT_PASSWORD=sitespeed
       - DOCKER_INFLUXDB_INIT_ORG=sitespeed
       - DOCKER_INFLUXDB_INIT_BUCKET=sitespeed
       - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=sitespeed
+    volumes:
+      - ./influxdb-data:/var/lib/influxdb2
+      - ./influxdb-config:/etc/influxdb2
+  grafana:
+    image: grafana/grafana:12.2.1
+    ports:
+      - '3000:3000'
+    depends_on:
+      - influxdb_v2.7
+      - influxdb_v1.8
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=sitespeed
+      - GF_SECURITY_ADMIN_USER=sitespeed
+      - DOCKER_INFLUXDB_INIT_ORG=sitespeed
+      - DOCKER_INFLUXDB_INIT_BUCKET=sitespeed
+      - DOCKER_INFLUXDB_INIT_ADMIN_TOKEN=sitespeed
+    volumes:
+      - ./grafana-storage:/var/lib/grafana
+      - ./grafana-provisioning/:/etc/grafana/provisioning/
+
+  minio:
+    image: minio/minio:latest
+    container_name: minio
+    ports:
+      - "9000:9000"
+      - "9001:9001"
+    environment:
+      MINIO_ROOT_USER: minio
+      MINIO_ROOT_PASSWORD: minio123
+    command: server /data --console-address ":9001"
+
+  createbucket:
+    image: quay.io/minio/mc
+    depends_on:
+      - minio
+    restart: on-failure
+    entrypoint: >
+      /bin/sh -c "
+           /usr/bin/mc alias set dockerminio http://minio:9000 minio minio123 &&
+           (/usr/bin/mc mb dockerminio/sitespeed-bucket/sitespeed-results || echo 'Bucket already exists') &&
+           /usr/bin/mc ilm rule add --expire-days 30 dockerminio/sitespeed-bucket &&
+           /usr/bin/mc anonymous set public dockerminio/sitespeed-bucket &&
+           /usr/bin/mc admin config set dockerminio compression extensions=\".html,.css,.js\" &&
+           echo 'MinIO and lifecycle policy setup complete.'"
+

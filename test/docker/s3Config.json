@@ -1,0 +1,10 @@
+{
+  "s3": {
+    "endpoint": "http://127.0.0.1:9000/",
+    "key": "minio",
+    "secret": "minio123",
+    "bucketname": "sitespeed-bucket",
+    "region": "us-east-1"
+  },
+  "resultBaseUrl": "http://127.0.0.1:9000/sitespeed-bucket"
+}
