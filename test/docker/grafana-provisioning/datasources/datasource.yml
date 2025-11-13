@@ -11,4 +11,4 @@ datasources:
       organization: sitespeed
       version: Flux
     secureJsonData:
-      token: sitespeed_token
+      token: sitespeed
